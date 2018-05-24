@@ -9,7 +9,7 @@ branches:
     - /^feature\/.*/
 build_script:
   - ps: .\build.ps1 -IsOfficialBuild
-  - ps: .\docs\generate.ps1 -NoBuild -Verbose
+  - ps: .\docs\generate.ps1 -Verbose
 environment:
   access_token:
     secure: 7gza5cyC0Fwp5LcFPz9dGMcHXP2jxbrnu7er9R/HkdvnhzGJVADvOtfYO7+Vow5p

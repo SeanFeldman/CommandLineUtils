@@ -17,8 +17,8 @@ try {
     mkdir -p $buildRoot -ErrorAction Ignore | Out-Null
 
     if (-not (git worktree list --porcelain | Select-String 'gh-pages')) {
-        exec git fetch --quiet -u origin gh-pages:gh-pages
-        exec git worktree add $targetDir gh-pages
+        exec git -q fetch --quiet -u origin gh-pages:gh-pages
+        exec git -q worktree add $targetDir gh-pages
     }
 
     $docfxVersion = '2.33.2'
@@ -33,7 +33,7 @@ try {
     }
 
     Push-Location $targetDir
-    exec git rm --quiet --force -r .
+    exec git -q rm --quiet --force -r .
     Pop-Location
 
     if (-not $NoBuild) {
@@ -49,7 +49,7 @@ try {
     }
     finally {
         Push-Location $targetDir
-        exec git add ./
+        exec git -q add ./
         Write-Host "Files that changed in docs:"
         exec git --no-pager status -s
         Pop-Location
